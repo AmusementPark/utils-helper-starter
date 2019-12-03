@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>zsh.tools</groupId>
     <artifactId>utils-helper-starter</artifactId>
-    <version>2.1.0-SNAPSHOT</version>
+    <version>2.1.0</version>
     <name>utils-helper</name>
     <organization>
         <name>mine.name.zsh</name>
@@ -17,6 +17,7 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <github.global.server>github</github.global.server>
     </properties>
 
     <dependencies>
@@ -43,6 +44,43 @@
             <scope>compile</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.2</version>
+                <configuration>
+                    <altDeploymentRepository>internal.repo::default::file://${project.build.directory}/utils-helper-starter</altDeploymentRepository>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.github.github</groupId>
+                <artifactId>site-maven-plugin</artifactId>
+                <version >0.12</version>
+                <configuration>
+                    <message >Maven artifacts for ${project.version}</message>
+                    <noJekyll>true</noJekyll>
+                    <outputDirectory>${project.build.directory}/utils-helper-starter</outputDirectory><!--本地jar地址-->
+                    <branch>refs/heads/master</branch><!--分支的名称-->
+                    <merge>true</merge>
+                    <includes>
+                        <include>**/*</include>
+                    </includes>
+                    <repositoryName>utils-helper-starter</repositoryName><!--对应github上创建的仓库名称 name-->
+                    <repositoryOwner>AmusementPark</repositoryOwner><!--github 仓库所有者即登录用户名-->
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>site</goal>
+                        </goals>
+                        <phase>deploy</phase>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
     <dependencyManagement>
         <dependencies>
