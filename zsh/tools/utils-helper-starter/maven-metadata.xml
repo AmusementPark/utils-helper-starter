@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>zsh.tools</groupId>
+  <artifactId>utils-helper-starter</artifactId>
+  <versioning>
+    <versions>
+      <version>2.1.0-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20191203115308</lastUpdated>
+  </versioning>
+</metadata>
